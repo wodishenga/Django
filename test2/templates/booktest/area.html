@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Area now:{{area.atitle}}</h3>
+    <h3>Parent Area:{{area.aParent.atitle}}</h3>
+    <h3>Son area:</h3>
+    <ul>
+        {%for a in area.areainfo_set.all%}
+            <li>{{a.atitle}}</li>
+        {%endfor%}
+    </ul>
+
+</body>
+</html>

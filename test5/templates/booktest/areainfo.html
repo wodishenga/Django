@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/booktest/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            pro = $('#pro')
+            ///area/0/ 发起请求，function对返回回来的数据进行处理
+            $.get('/area/0/', function(dic){ //data[[],[],[]]
+                $.each(dic.data, function(index, item){     //  [id, title]
+                    pro.append('<option value="'+item[0]+'">'+item[1]+'</option>'   )
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+<select  id="pro">
+    <option value="">请选择省</option>
+</select>
+<select  id="city">
+    <option value="">请选择市</option>
+</select>
+<select  id="dis">
+    <option value=""> 请选择县</option>
+</select>
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--默认情况下，从视图传到模板会自动转义-->
+{{t1}}
+<br>
+<!--通过过滤器不执行转义      -->
+{{t1|safe}}
+<br>
+<!--通过标签不执行转义      -->
+{% autoescape off%}
+{{t1}}
+{% endautoescape%}
+<br>
+
+
+字面值:
+<br>
+<!--默认不执行转义，如果视图中没有t2传过来，那么则执行default，如果有则填t2传过来的值-->
+{{t2| default:'<h1>zhushengjie</h1>'}}
+
+
+
+</body>
+</html>

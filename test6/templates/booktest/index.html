@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/booktest/jquery-1.12.4.js"></script>
+    <script>
+
+        $(function(){
+            //  获取省信息
+            $.get('/pro/', function(list){
+                pro = $('#pro');
+                //{data:[[1,'xx'],[2,'yy']]}
+                $.each(list.data, function(index, item){//[1,'xx']
+                    pro.append('<option value="'+item[0]+'">'+item[1]+'</option>');
+                });
+            });
+            //  当省改变则获取市信息
+            $('#pro').change(function(){
+                $.get('/city'+$(this).val()+'/', function(list){
+                    city = $('#city');
+                    dis = $('#dis');
+                    city.empty().append('<option value="0">请选择省</option>');
+                    dis.empty().append('<option value="0"> 请选择县</option>');
+                    $.each(list.data, function(index, item){//{"id":1,"atitle":'xx'}
+                    city.append('<option value="'+item.id+'">'+item.atitle+'</option>');
+                    });
+                });
+            });
+            // 当市改变则获取县区信息
+            $('#city').change(function(){
+                $.get('/city'+$(this).val()+'/', function(list){
+                    dis = $('#dis')
+                    dis.empty().append('<option value="0"> 请选择县</option>')
+                    $.each(list.data, function(index, item){//{"id":1,"atitle":'xx'}
+                    dis.append('<option value="'+item.id+'">'+item.atitle+'</option>');
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<select  id="pro">
+    <option value="0">请选择省</option>
+</select>
+<select  id="city">
+    <option value="0">请选择市</option>
+</select>
+<select  id="dis">
+    <option value="0"> 请选择县</option>
+</select>
+</body>
+</html>
